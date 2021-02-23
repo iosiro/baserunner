@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script src="main.js">
+  </script>
+<style>
+body, button { font-family: monospace; }
+.container { display: flex; flex-wrap: wrap-reverse; align-content: space-between; margin: 0 auto; max-width: 90em; }
+.inner { display: block; margin: 0.5em; }
+ul { list-style: none; padding-left: 0; }
+a, a:visited { color: inherit; }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="logins inner">
+
+      <div data-controller="login-email">
+        <p data-login-email-target="status">Log in with email &amp; password</p>
+        <input data-login-email-target="email" type="text">
+        <input data-login-email-target="password" type="text">
+        <br>
+        <button type="submit" data-login-email-target="button" data-action="click->login-email#login">Log in</button>
+      </div>
+
+      <div data-controller="login-phone">
+        <p data-login-phone-target="status">Log in with phone number (complete CAPTCHA first)</p>
+        <input data-login-phone-target="phonenumber" type="text">
+        <input data-login-phone-target="otp" type="text">
+        <br>
+        <button data-login-phone-target="button" id="login-phone-button" type="submit" data-action="click->login-phone#login">Log in</button>
+        <div id="g-recaptcha"></div>
+        <button data-login-phone-target="otpbutton" type="submit" data-action="click->login-phone#sendcode">Submit code</button>
+      </div>
+
+      <div data-controller="config">
+        <p>Firebase config</p>
+        <textarea data-config-target="config" rows="18" cols="40"></textarea>
+        <br>
+        <pre data-config-target="display"></pre>
+        <button type="submit" data-config-target="button" data-action="click->config#set" >Set config</button>
+      </div>
+    </div>
+
+    <div class="queries inner">
+      <div data-controller="query">
+        <pre data-query-target="display"></pre>
+        <p>Query database</p>
+        <textarea data-query-target="query" rows="20" cols="80"></textarea>
+        <br>
+        <button type="submit" data-action="click->query#run">Run</button>
+        <div>
+          <p>Query templates (replace the text in ==s):</p>
+          <ul>
+            <li><a href="#" data-action="click->query#read">Read collection</a></li>
+            <li><a href='#' data-action="click->query#add">Add to collection</a></li>
+            <li><a href='#' data-action="click->query#modify">Modify document in collection</a></li>
+            <li><a href='#' data-action="click->query#delete">Delete from collection</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
