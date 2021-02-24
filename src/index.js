@@ -1,11 +1,13 @@
 import firebase from "firebase/app"
 import "firebase/auth";
 import "firebase/firestore";
+import "firebase/database";
 
 import { Application } from "stimulus"
 import { definitionsFromContext } from "stimulus/webpack-helpers"
 
 window.firebaseConfig = null;
+window.cfs = null;
 window.db = null;
 window.firebaseUser = null;
 window.uid = null;
@@ -20,6 +22,12 @@ window.displayReadResults = function(querySnapshot) {
   });
   document.getElementById("query-results").innerHTML = rows;
 };
+
+window.displayObject = function(snapshot) {
+  var obj = JSON.stringify(snapshot.val(), null, 2);
+  console.log(obj)
+  document.getElementById("query-results").innerText = obj;
+}
 
 window.displayMessage = function(message) {
   console.log(message)

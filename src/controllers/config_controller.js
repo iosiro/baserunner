@@ -2,6 +2,7 @@ import { Controller } from "stimulus"
 import firebase from "firebase/app"
 import "firebase/auth";
 import "firebase/firestore";
+import "firebase/database";
 import JSON5 from "json5";
 
 export default class extends Controller {
@@ -30,7 +31,8 @@ export default class extends Controller {
       else {
         window.firebaseConfig = JSON5.parse(this.configTarget.value);
         firebase.initializeApp(window.firebaseConfig);
-        window.db = firebase.firestore()
+        window.cfs = firebase.firestore()
+        window.db = firebase.database()
 
         this.configTarget.hidden = true;
         this.displayTarget.hidden = false;

@@ -11,12 +11,12 @@ export default class extends Controller {
     }
 
     read() {
-      this.queryTarget.value = `db.collection("==COLLECTION==").get().then(window.displayReadResults);
+      this.queryTarget.value = `window.cfs.collection("==COLLECTION==").get().then(window.displayReadResults);
 `
     }
 
     add() {
-      this.queryTarget.value = `db.collection("==COLLECTION==").add({
+      this.queryTarget.value = `window.cfs.collection("==COLLECTION==").add({
    "==KEY==":"==VALUE==",
    "==KEY==":"==VALUE==",
 })
@@ -30,7 +30,7 @@ export default class extends Controller {
     }
 
     modify() {
-      this.queryTarget.value = `db.collection("==COLLECTION==").doc("==ID==").set({
+      this.queryTarget.value = `window.cfs.collection("==COLLECTION==").doc("==ID==").set({
     "==KEY==": "==VALUE=="
 }, { merge: true })
 .then(() => {
@@ -43,11 +43,37 @@ export default class extends Controller {
     }
 
     delete() {
-      this.queryTarget.value = `db.collection("==COLLECTION==").doc("==ID==").delete().then(() => {
+      this.queryTarget.value = `window.cfs.collection("==COLLECTION==").doc("==ID==").delete().then(() => {
     window.displayMessage("Document successfully deleted!");
 }).catch((error) => {
     window.displayError(\`Error removing document: \${error}\`);
 });
-          `
+`
+    }
+
+    read_rtd() {
+      this.queryTarget.value = `window.db.ref("==COLLECTION==").get().then(function(snapshot) {
+  if (snapshot.exists()) {
+    window.displayObject(snapshot);
+  }
+  else {
+    window.displayMessage("No data available");
+  }
+}).catch(function(error) {
+  window.displayError(error);
+});
+`
+    }
+
+    add_rtd() {
+      this.queryTarget.value = ``
+    }
+
+    modify_rtd() {
+      this.queryTarget.value = ``
+    }
+
+    delete_rtd() {
+      this.queryTarget.value = ``
     }
 }
