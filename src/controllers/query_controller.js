@@ -66,14 +66,43 @@ export default class extends Controller {
     }
 
     add_rtd() {
-      this.queryTarget.value = ``
+      this.queryTarget.value = `window.db.ref('==COLLECTION==/' + ==ID==).set({
+  "==KEY==": "==VALUE==",
+  "==KEY==": "==VALUE==",
+}, (error) => {
+  if (error) {
+    window.displayError(error)
+  } else {
+    window.displayMessage("Data saved successfully!")
+  }
+});
+`
     }
 
     modify_rtd() {
-      this.queryTarget.value = ``
+      this.queryTarget.value = `window.db.ref().update({
+  "==COLLECTION==" : {
+    "==KEY==": "==VALUE==",
+    "==KEY==": "==VALUE==",
+  }
+}, (error) => {
+  if (error) {
+    window.displayError(error)
+  } else {
+    window.displayMessage("Data saved successfully!")
+  }
+});
+`
     }
 
     delete_rtd() {
-      this.queryTarget.value = ``
+      this.queryTarget.value = `window.db.ref("==REF==").remove((error) => {
+  if (error) {
+    window.displayError(error)
+  } else {
+    window.displayMessage("Data deleted successfully!")
+  }
+});
+`
     }
 }

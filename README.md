@@ -38,9 +38,3 @@ Finally, you can use the query interface to submit queries to the application's 
 
 As there is no way of getting a list of available collection using the Firebase JavaScript SDK, you will need to guess these, or source their names from the application's front-end JavaScript.
 
-## Limitations
-
-* Only supports Cloud Firestore, not Realtime Database.
-* Does not support social login.
-
-
