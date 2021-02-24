@@ -6,9 +6,10 @@ A tool for exploring Firebase datastores.
 
 1. `git clone https://github.com/iosiro/baserunner.git`
 2. `cd baserunner`
-3. `npm run build`
-4. `npm start`
-5. Go to http://localhost:3000 in your browser.
+3. `npm install`
+4. `npm run build`
+5. `npm start`
+6. Go to http://localhost:3000 in your browser.
 
 ## Usage
 
