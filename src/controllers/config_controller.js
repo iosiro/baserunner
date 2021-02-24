@@ -9,6 +9,10 @@ export default class extends Controller {
       return [ "config", "display", "button" ]
     }
 
+    initialize() {
+      this.displayTarget.hidden = true;
+    }
+
     set() {
 
       if (this.configTarget.hidden) {
@@ -19,6 +23,7 @@ export default class extends Controller {
         window.firebaseConfig = null;
         this.configTarget.hidden = false;
         this.displayTarget.innerHTML = "";
+        this.displayTarget.hidden = false;
         this.buttonTarget.innerHTML = "Set config";
       }
       else {
@@ -27,6 +32,7 @@ export default class extends Controller {
         window.db = firebase.firestore()
 
         this.configTarget.hidden = true;
+        this.displayTarget.hidden = false;
         this.displayTarget.innerHTML = this.configTarget.value;
         this.buttonTarget.innerHTML = "Change config";
 

@@ -5,20 +5,14 @@
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <script src="main.js">
   </script>
-<style>
-body, button { font-family: monospace; }
-.container { display: flex; flex-wrap: wrap-reverse; align-content: space-between; margin: 0 auto; max-width: 90em; }
-.inner { display: block; margin: 0.5em; }
-ul { list-style: none; padding-left: 0; }
-a, a:visited { color: inherit; }
-</style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
     <div class="logins inner">
 
       <div data-controller="login-email">
-        <p data-login-email-target="status">Log in with email &amp; password</p>
+        <h2 data-login-email-target="status">Log in with email &amp; password</h2>
         <input data-login-email-target="email" type="text">
         <input data-login-email-target="password" type="text">
         <br>
@@ -26,7 +20,7 @@ a, a:visited { color: inherit; }
       </div>
 
       <div data-controller="login-phone">
-        <p data-login-phone-target="status">Log in with phone number (complete CAPTCHA first)</p>
+        <h2 data-login-phone-target="status">Log in with phone number (complete CAPTCHA first)</h2>
         <input data-login-phone-target="phonenumber" type="text">
         <input data-login-phone-target="otp" type="text">
         <br>
@@ -36,7 +30,7 @@ a, a:visited { color: inherit; }
       </div>
 
       <div data-controller="config">
-        <p>Firebase config</p>
+        <h2>Firebase config</h2>
         <textarea data-config-target="config" rows="18" cols="40"></textarea>
         <br>
         <pre data-config-target="display"></pre>
@@ -46,13 +40,13 @@ a, a:visited { color: inherit; }
 
     <div class="queries inner">
       <div data-controller="query">
-        <pre data-query-target="display"></pre>
-        <p>Query database</p>
+        <pre data-query-target="results" id="query-results"></pre>
+        <h2>Query database</h2>
         <textarea data-query-target="query" rows="20" cols="80"></textarea>
         <br>
         <button type="submit" data-action="click->query#run">Run</button>
         <div>
-          <p>Query templates (replace the text in ==s):</p>
+          <h3>Query templates (replace the text in ==s):</h3>
           <ul>
             <li><a href="#" data-action="click->query#read">Read collection</a></li>
             <li><a href='#' data-action="click->query#add">Add to collection</a></li>
