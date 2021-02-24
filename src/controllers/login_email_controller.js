@@ -12,6 +12,7 @@ export default class extends Controller {
         if (this.emailTarget.hidden) {
             firebase.auth().signOut()
             .then(() => {
+                window.firebaseUser = null;
                 this.emailTarget.hidden = false
                 this.passwordTarget.hidden = false
                 this.statusTarget.innerHTML = "Log in with email & password"

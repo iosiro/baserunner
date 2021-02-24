@@ -16,6 +16,7 @@ export default class extends Controller {
         if (this.phonenumberTarget.hidden) {
             firebase.auth().signOut()
             .then(() => {
+                window.firebaseUser = null;
                 this.phonenumberTarget.hidden = false
                 this.buttonTarget.hidden = false
                 this.statusTarget.innerHTML = "Log in with phone number (complete CAPTCHA first)"

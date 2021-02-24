@@ -23,8 +23,8 @@ export default class extends Controller {
         }
         window.firebaseConfig = null;
         this.configTarget.hidden = false;
+        this.displayTarget.hidden = true;
         this.displayTarget.innerHTML = "";
-        this.displayTarget.hidden = false;
         this.buttonTarget.innerHTML = "Set config";
       }
       else {
