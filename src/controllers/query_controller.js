@@ -3,20 +3,15 @@ import { Controller } from "stimulus"
 export default class extends Controller {
 
     static get targets() {
-      return [ "query", "display" ]
+      return [ "query", "results" ]
     }
 
     run() {
       eval(this.queryTarget.value);
-      this.displayTarget.innerHTML = "Check the console for results.";
     }
 
     read() {
-      this.queryTarget.value = `db.collection("==COLLECTION==").get().then((querySnapshot) => {
-  querySnapshot.forEach((doc) => {
-    console.log(\`\${doc.id} => \${JSON.stringify(doc.data())}\`);
-  });
-});
+      this.queryTarget.value = `db.collection("==COLLECTION==").get().then(window.displayReadResults);
 `
     }
 
@@ -26,10 +21,10 @@ export default class extends Controller {
    "==KEY==":"==VALUE==",
 })
 .then((docRef) => {
-    console.log("Document written with ID: ", docRef.id);
+    window.displayMessage(\`Document written with ID: \${docRef.id}\`);
 })
 .catch((error) => {
-    console.error("Error adding document: ", error);
+    window.displayError(\`Error adding document: \${error}\`);
 });
 `
     }
@@ -39,19 +34,19 @@ export default class extends Controller {
     "==KEY==": "==VALUE=="
 }, { merge: true })
 .then(() => {
-    console.log("Document successfully written!");
+    window.displayMessage("Document successfully written!");
 })
 .catch((error) => {
-    console.error("Error writing document: ", error);
+    window.displayError(\`Error writing document \${error}\`);
 });
 `
     }
 
     delete() {
       this.queryTarget.value = `db.collection("==COLLECTION==").doc("==ID==").delete().then(() => {
-    console.log("Document successfully deleted!");
+    window.displayMessage("Document successfully deleted!");
 }).catch((error) => {
-    console.error("Error removing document: ", error);
+    window.displayError(\`Error removing document: \${error}\`);
 });
           `
     }

@@ -2,11 +2,16 @@ import { Controller } from "stimulus"
 import firebase from "firebase/app"
 import "firebase/auth";
 import "firebase/firestore";
+import JSON5 from "json5";
 
 export default class extends Controller {
 
     static get targets() {
       return [ "config", "display", "button" ]
+    }
+
+    initialize() {
+      this.displayTarget.hidden = true;
     }
 
     set() {
@@ -18,15 +23,17 @@ export default class extends Controller {
         }
         window.firebaseConfig = null;
         this.configTarget.hidden = false;
+        this.displayTarget.hidden = true;
         this.displayTarget.innerHTML = "";
         this.buttonTarget.innerHTML = "Set config";
       }
       else {
-        window.firebaseConfig = JSON.parse(this.configTarget.value);
+        window.firebaseConfig = JSON5.parse(this.configTarget.value);
         firebase.initializeApp(window.firebaseConfig);
         window.db = firebase.firestore()
 
         this.configTarget.hidden = true;
+        this.displayTarget.hidden = false;
         this.displayTarget.innerHTML = this.configTarget.value;
         this.buttonTarget.innerHTML = "Change config";
 

@@ -25,6 +25,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "firebase": "^8.2.9",
+    "json5": "^2.2.0",
     "stimulus": "^2.0.0"
   },
   "devDependencies": {
