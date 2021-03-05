@@ -47,7 +47,7 @@ Applications using Realtime Database will have a `databaseURL` key in their conf
 
 **I'm getting blocked by CORS!**
 
-To function as intended, Baserunner expects applications to accept requests from localhost, which is enabled default. Therefore, Baserunner cannot be used as a hosted application.
+To function as intended, Baserunner expects applications to accept requests from localhost, which is enabled by default. Therefore, Baserunner cannot be used as a hosted application.
 
 Should requests from localhost be disallowed by the application you're testing, a version of Baserunner with a reduced featureset can still be run by opening `dist/index.html` in your browser. Note that this way of running Baserunner only supports email + password login and not phone login.
 
