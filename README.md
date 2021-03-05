@@ -61,7 +61,7 @@ Realtime Database: As this datastore is represented as a JSON object, you can us
 
 While only the latest query result is displayed on the Baserunner page, all results are logged to the browser console.
 
-**When running realtime datbase queries, I get an error that says the client is offline.**
+**When running Realtime Database queries, I get an error that says the client is offline.**
 
 Try rerunning the query.
 
