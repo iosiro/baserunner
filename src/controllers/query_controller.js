@@ -52,6 +52,10 @@ export default class extends Controller {
     }
 
     read_rtd() {
+      if (!("databaseURL" in window.firebaseConfig)) {
+          alert("Database not defined in Firebase config!");
+          return;
+      }
       this.queryTarget.value = `window.db.ref("==COLLECTION==").get().then(function(snapshot) {
   if (snapshot.exists()) {
     window.displayObject(snapshot);
@@ -65,8 +69,30 @@ export default class extends Controller {
 `
     }
 
+    readall_rtd() {
+      if (!("databaseURL" in window.firebaseConfig)) {
+          alert("Database not defined in Firebase config!");
+          return;
+      }
+      this.queryTarget.value = `window.db.ref("/").get().then(function(snapshot) {
+  if (snapshot.exists()) {
+    window.displayObject(snapshot);
+  }
+  else {
+    window.displayMessage("No data available");
+  }
+}).catch(function(error) {
+  window.displayError(error);
+});
+`
+    }
+
     add_rtd() {
-      this.queryTarget.value = `window.db.ref('==COLLECTION==/' + ==ID==).set({
+      if (!("databaseURL" in window.firebaseConfig)) {
+          alert("Database not defined in Firebase config!");
+          return;
+      }
+      this.queryTarget.value = `window.db.ref('==COLLECTION==/' + "==ID==").set({
   "==KEY==": "==VALUE==",
   "==KEY==": "==VALUE==",
 }, (error) => {
@@ -80,8 +106,12 @@ export default class extends Controller {
     }
 
     modify_rtd() {
+      if (!("databaseURL" in window.firebaseConfig)) {
+          alert("Database not defined in Firebase config!");
+          return;
+      }
       this.queryTarget.value = `window.db.ref().update({
-  "==COLLECTION==" : {
+  "==COLLECTION==/==ID==" : {
     "==KEY==": "==VALUE==",
     "==KEY==": "==VALUE==",
   }
@@ -96,7 +126,11 @@ export default class extends Controller {
     }
 
     delete_rtd() {
-      this.queryTarget.value = `window.db.ref("==REF==").remove((error) => {
+      if (!("databaseURL" in window.firebaseConfig)) {
+          alert("Database not defined in Firebase config!");
+          return;
+      }
+      this.queryTarget.value = `window.db.ref("==COLLECTION==/==ID==").remove((error) => {
   if (error) {
     window.displayError(error)
   } else {

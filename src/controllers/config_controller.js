@@ -23,6 +23,7 @@ export default class extends Controller {
           return;
         }
         window.firebaseConfig = null;
+        firebase.apps[0].delete();
         this.configTarget.hidden = false;
         this.displayTarget.hidden = true;
         this.displayTarget.innerHTML = "";
@@ -31,8 +32,10 @@ export default class extends Controller {
       else {
         window.firebaseConfig = JSON5.parse(this.configTarget.value);
         firebase.initializeApp(window.firebaseConfig);
-        window.cfs = firebase.firestore()
-        window.db = firebase.database()
+        window.cfs = firebase.firestore();
+        if ("databaseURL" in window.firebaseConfig) {
+          window.db = firebase.database();
+        }
 
         this.configTarget.hidden = true;
         this.displayTarget.hidden = false;
