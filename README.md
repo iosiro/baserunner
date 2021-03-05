@@ -43,7 +43,7 @@ As there is no way of getting a list of available collection using the Firebase 
 
 **How do I tell if an app is using Cloud Firestore or Realtime Database?**
 
-Applications using Realtime Database will have a `database` key in their configuration objects. Applications without this key can be assumed to use Cloud Firestore. Note that it is possible for Firebase applications to use both datastores, so when in doubt, run both types of queries.
+Applications using Realtime Database will have a `databaseURL` key in their configuration objects. Applications without this key can be assumed to use Cloud Firestore. Note that it is possible for Firebase applications to use both datastores, so when in doubt, run both types of queries.
 
 **I'm getting blocked by CORS!**
 
