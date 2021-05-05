@@ -1,4 +1,6 @@
-# 🧢 Baserunner
+![](baserunner-logo.png)
+
+# Baserunner
 
 A tool for exploring and exploiting Firebase datastores.
 

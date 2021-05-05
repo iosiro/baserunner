@@ -7,7 +7,7 @@ body, button {
     flex-wrap: wrap-reverse; 
     align-content: space-between; 
     margin: 0 auto; 
-    max-width: 100em; 
+    max-width: 120em; 
 }
 
 .inner { 
