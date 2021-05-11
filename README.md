@@ -2,7 +2,7 @@
 
 # Baserunner
 
-A tool for exploring and exploiting Firebase datastores.
+A tool for exploring and exploiting Firebase datastores. See [this post on our blog](https://iosiro.com/blog/baserunner-exploiting-firebase-datastores) for an overview of how Firebase works and why we developed this tool.
 
 ## Set up
 
