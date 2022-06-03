@@ -2,8 +2,19 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.4.0/firebase-ui-auth.css" />
+  <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/4.4.0/firebase-ui-auth.js"></script>
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <script src="main.js">
+  </script>
+  <!-- <script src="googleauth.js"></script> -->
+  <script type="text/javascript">
+    function onSignIn(googleUser) {
+      window.googleUser = googleUser;
+    }
   </script>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -27,6 +38,15 @@
         <button data-login-phone-target="button" id="login-phone-button" type="submit" data-action="click->login-phone#login">Log in</button>
         <div id="g-recaptcha"></div>
         <button data-login-phone-target="otpbutton" type="submit" data-action="click->login-phone#sendcode">Submit code</button>
+      </div>
+
+      <div data-controller="login-google">
+        <h2 data-login-google-target="status">Log in with Google</h2>
+        <div id="g_id_onload" data-client_id="REDACTED.apps.googleusercontent.com" data-callback="onSignIn" data-auto_prompt="false"></div>
+        <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left">
+        </div>
+
+        <button type="submit" data-login-google-target="gbutton" data-action="click->login-google#login">Set google login</button>
       </div>
 
       <div data-controller="config">
