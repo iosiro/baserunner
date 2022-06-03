@@ -13,5 +13,8 @@ if (process.argv[2] == '443') {
     }
     https.createServer(options, app).listen(443);
 } else {
-    app.listen(parseInt(process.argv[2]));
+    var port = 3000;
+    if (process.argv[2])
+        port = parseInt(process.argv[2]);
+    app.listen(port);
 }
