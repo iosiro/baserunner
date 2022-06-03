@@ -10,7 +10,6 @@
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <script src="main.js">
   </script>
-  <!-- <script src="googleauth.js"></script> -->
   <script type="text/javascript">
     function onSignIn(googleUser) {
       window.googleUser = googleUser;
@@ -42,8 +41,7 @@
 
       <div data-controller="login-google">
         <h2 data-login-google-target="status">Log in with Google</h2>
-        <div id="g_id_onload" data-client_id="REDACTED.apps.googleusercontent.com" data-callback="onSignIn" data-auto_prompt="false"></div>
-        <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left">
+        <div id="g_id_onload" data-client_id="TODO_SET_ME.apps.googleusercontent.com" data-callback="onSignIn" data-auto_prompt="false"></div>
         </div>
 
         <button type="submit" data-login-google-target="gbutton" data-action="click->login-google#login">Set google login</button>
