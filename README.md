@@ -88,6 +88,8 @@ At the prompts, you can leave all fields blank except `Common Name (e.g. server 
 
 4. Edit `dist/index.html` and modify `TODO_SET_ME.apps.googleusercontent.com` to the Client ID you found in step 1.
 
+5. Clear all website data relating to `PROJECT_ID.firebaseapp.com` from your browser settings (alternatively, use a fresh browser) in order to prevent the browser from blocking your connection due to certificate mismatch (HSTS).
+
 5. Run Baserunner using ```sudo node index.js 443``` and then load `https://PROJECT_ID.firebaseapp.com` in your browser
 
 6. Click the Google sign-in button and sign in using the Google account you registered for the app with.
