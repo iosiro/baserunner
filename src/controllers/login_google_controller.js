@@ -9,7 +9,6 @@ export default class extends Controller {
         }
 
     login() {
-        console.log(window.googleUser);
         if (!window.firebaseConfig) {
             alert("Set config first!");
             return;
