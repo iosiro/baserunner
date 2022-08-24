@@ -2,8 +2,40 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.4.0/firebase-ui-auth.css" />
+  <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/4.4.0/firebase-ui-auth.js"></script>
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <script src="main.js">
+  </script>
+  <script type="text/javascript">
+    function onSignIn(googleUser) {
+      window.googleUser = googleUser;
+    }
+
+    function insertGoogleSignIn() {
+      var gLoginSection = document.getElementById("login-google-section");
+      var gClientIdElement = document.getElementById("google-client-id");
+
+      google.accounts.id.initialize({
+        client_id: gClientIdElement.value,
+        callback: onSignIn
+      });
+      google.accounts.id.renderButton(
+        document.getElementById("gSignIn"),
+        { theme: "outline", size: "medium"}
+      );
+
+      gClientIdElement.disabled = true;
+      document.getElementById("set-google-client-id").hidden = true;
+      document.getElementById("set-google-login").hidden = false;
+    }
+
+    window.onload = function() {
+      document.getElementById("set-google-client-id").addEventListener("click", insertGoogleSignIn);
+    }
   </script>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -27,6 +59,18 @@
         <button data-login-phone-target="button" id="login-phone-button" type="submit" data-action="click->login-phone#login">Log in</button>
         <div id="g-recaptcha"></div>
         <button data-login-phone-target="otpbutton" type="submit" data-action="click->login-phone#sendcode">Submit code</button>
+      </div>
+
+      <div data-controller="login-google" id="login-google-section">
+        <h2 data-login-google-target="status">Log in with Google</h2>
+        <input type="text" id="google-client-id"></input>
+        <input type="button" id="set-google-client-id" value="Set Google client ID"></input>
+
+        <br>
+        <div id="gSignIn"></div>
+        <br>
+
+        <button type="submit" id="set-google-login" data-login-google-target="gbutton" data-action="click->login-google#login" hidden>Set Google login</button>
       </div>
 
       <div data-controller="config">

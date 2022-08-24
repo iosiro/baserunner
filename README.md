@@ -67,3 +67,36 @@ While only the latest query result is displayed on the Baserunner page, all resu
 
 Try rerunning the query.
 
+**How do I log in with Google?**
+
+1. Find the app's Google OAuth Client ID (i.e. `NUMERIC_STR-ALPHANUMERIC_STR.apps.googleusercontent.com`). You can do this by clicking "Sign in with Google" on the site, inspecting the HTML, and searching for `apps.googleusercontent.com`.
+
+2. Edit your DNS file (`/etc/hosts` on Linux and macOS, `C:\Windows\system32\drivers\etc\hosts` on Windows) and add the following line:
+
+```
+127.0.0.1 PROJECT_ID.firebaseapp.com
+```
+
+3. In the Baserunner directory, run the following command to generate a self-signed certificate:
+
+```
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ./selfsigned.key -out selfsigned.crt
+```
+
+At the prompts, you can leave all fields blank except `Common Name (e.g. server FQDN or YOUR name) []`, which you should set to `PROJECT_ID.firebaseapp.com`.
+
+4. Clear all website data relating to `PROJECT_ID.firebaseapp.com` from your browser settings (alternatively, use a fresh browser) in order to prevent the browser from blocking your connection due to certificate mismatch (HSTS).
+
+If you use DNS-over-TLS or DNS-over-HTTPS on the browser you're using for Baserunner, temporarily disable it in order to spoof the required origin for Google sign in on Firebase.
+
+5. Run Baserunner using ```sudo node index.js 443``` and then load `https://PROJECT_ID.firebaseapp.com` in your browser.
+
+6. Enter the Google OAuth Client you found in step 1 into the field under "Log in with Google" and click "Set Google client ID".
+
+7. Click the Google sign-in button and sign in using the Google account you registered for the app with.
+
+8. Click the "Set Google login" button.
+
+9. Explore the database as you would with a non-Google account.
+
+10. When done security testing, remove the line from step 2 from your DNS file.
