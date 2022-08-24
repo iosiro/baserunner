@@ -1,12 +1,12 @@
 {
   "name": "baserunner",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A tool for exploring Firebase datastores.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "start": "node index.js"
+    "start": "node index.js",
+    "startssl": "sudo node index.js 443"
   },
   "repository": {
     "type": "git",

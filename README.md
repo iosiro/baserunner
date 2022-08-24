@@ -89,7 +89,7 @@ At the prompts, you can leave all fields blank except `Common Name (e.g. server 
 
 If you use DNS-over-TLS or DNS-over-HTTPS on the browser you're using for Baserunner, temporarily disable it in order to spoof the required origin for Google sign in on Firebase.
 
-5. Run Baserunner using ```sudo node index.js 443``` and then load `https://PROJECT_ID.firebaseapp.com` in your browser.
+5. Run Baserunner using `npm run startssl` and then load `https://PROJECT_ID.firebaseapp.com` in your browser.
 
 6. Enter the Google OAuth Client you found in step 1 into the field under "Log in with Google" and click "Set Google client ID".
 
