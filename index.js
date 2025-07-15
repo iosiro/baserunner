@@ -13,8 +13,10 @@ if (process.argv[2] == '443') {
     }
     https.createServer(options, app).listen(443);
 } else {
-    var port = 3000;
+    var port = 47710; // TCP port 0xBA5E
     if (process.argv[2])
         port = parseInt(process.argv[2]);
     app.listen(port);
 }
+
+console.log(`Baserunner listening on port ${port}`);
