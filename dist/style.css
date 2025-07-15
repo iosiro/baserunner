@@ -1,34 +1,239 @@
-body, button {
-    font-family: monospace;
+/* CSS Variables for theming */
+:root {
+  /* Light mode colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --bg-tertiary: #e9ecef;
+  --text-primary: #212529;
+  --text-secondary: #6c757d;
+  --border-color: #dee2e6;
+  --accent-color: #0d6efd;
+  --accent-hover: #0b5ed7;
+  --success-color: #198754;
+  --warning-color: #ffc107;
+  --error-color: #dc3545;
+  --code-bg: #f1f3f4;
+  --input-bg: #ffffff;
+  --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Dark mode colors */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --bg-tertiary: #404040;
+    --text-primary: #e9ecef;
+    --text-secondary: #adb5bd;
+    --border-color: #495057;
+    --accent-color: #3d8bfd;
+    --accent-hover: #5a9cff;
+    --success-color: #20c997;
+    --warning-color: #ffc107;
+    --error-color: #dc3545;
+    --code-bg: #2d2d2d;
+    --input-bg: #2d2d2d;
+    --shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Base styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Container layout - compact and efficient */
 .container {
-    display: flex; 
-    flex-wrap: wrap-reverse; 
-    align-content: space-between; 
-    margin: 0 auto; 
-    max-width: 120em; 
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0.5rem;
+  min-height: 100vh;
 }
 
-.inner { 
-    display: block; 
-    margin: 0.5em; 
+/* Section styling */
+.inner {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 0.5rem;
+  box-shadow: var(--shadow);
 }
 
-ul { list-style: none; 
-    padding-left: 0; 
-}
-
-a, a:visited { 
-    color: inherit; 
-}
-
-pre {
-    background-color: lightgrey;
-    padding: 10px;
-    border-radius: 4px;
-}
-
+/* Typography */
 h2 {
-font-size: 1.3em;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 0.75rem 0;
+  color: var(--text-primary);
+  border-bottom: 2px solid var(--accent-color);
+  padding-bottom: 0.25rem;
+}
+
+h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0.75rem 0 0.5rem 0;
+  color: var(--text-primary);
+}
+
+/* Form elements */
+input, textarea, button {
+  font-family: inherit;
+  font-size: 13px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 0.5rem;
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.25);
+}
+
+input[type="text"], input[type="password"] {
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 60px;
+  font-family: inherit;
+}
+
+/* Buttons */
+input[type="button"], button {
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+input[type="button"]:hover, button:hover {
+  background-color: var(--accent-hover);
+}
+
+input[type="button"]:disabled, button:disabled {
+  background-color: var(--text-secondary);
+  cursor: not-allowed;
+}
+
+/* Code blocks */
+pre {
+  background-color: var(--code-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+  overflow-x: auto;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--text-primary);
+}
+
+/* Lists */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0;
+}
+
+li {
+  margin-bottom: 0.25rem;
+}
+
+/* Links */
+a, a:visited {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+/* Status indicators */
+[data-login-email-target="status"],
+[data-login-phone-target="status"],
+[data-login-google-target="status"] {
+  font-size: 0.9rem;
+  font-weight: normal;
+  color: var(--text-secondary);
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* Compact spacing for login sections */
+[data-controller="login-email"],
+[data-controller="login-phone"],
+[data-controller="login-google"],
+[data-controller="config"] {
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background-color: var(--bg-tertiary);
+  border-radius: 4px;
+}
+
+/* Query section optimization */
+.queries {
+  display: flex;
+  flex-direction: column;
+}
+
+[data-controller="query"] {
+  flex: 1;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    padding: 0.75rem;
+  }
+  
+  body {
+    font-size: 13px;
+  }
+  
+  h2 {
+    font-size: 1rem;
+  }
+  
+  input, textarea, button {
+    font-size: 12px;
+  }
+}
+
+/* Focus indicators for accessibility */
+button:focus,
+input:focus,
+textarea:focus,
+a:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
 }
