@@ -1,6 +1,6 @@
 {
   "name": "baserunner",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "A tool for exploring Firebase datastores.",
   "main": "index.js",
   "scripts": {
@@ -24,7 +24,7 @@
   "homepage": "https://github.com/iosiro/baserunner#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "firebase": "^11.10.0",
+    "firebase": "^8.10.1",
     "json5": "^2.2.0",
     "stimulus": "^2.0.0"
   },
