@@ -3,6 +3,7 @@ import firebase from "firebase/app"
 import "firebase/auth";
 import "firebase/firestore";
 import "firebase/database";
+import "firebase/storage";
 import JSON5 from "json5";
 
 export default class extends Controller {
@@ -36,6 +37,7 @@ export default class extends Controller {
         if ("databaseURL" in window.firebaseConfig) {
           window.db = firebase.database();
         }
+        window.storage = firebase.storage();
 
         this.configTarget.hidden = true;
         this.displayTarget.hidden = false;

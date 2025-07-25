@@ -37,9 +37,11 @@ First, use the configuration textbox to load a Firebase configuration JSON struc
 
 Then log in as a regular user, either with email and password or with a mobile phone number. When logging in with a mobile phone number, complete the CAPTCHA before submitting your number. You will then be prompted for an OTP from your SMS. Enter this without completing the CAPTCHA to finish logging in. Note that you can skip this step to test queries without authentication.
 
-Finally, you can use the query interface to submit queries to the application's Cloud Firestore. Baserunner provides a number of template queries for common actions. Click on one of them to load it in the textbox, and replace the values that look `==LIKE THIS==` with valid names of collections, IDs, fields, etc.
+Finally, you can use the query interface to submit queries to the application's Cloud Firestore, Realtime Database, and Firebase Storage. Baserunner provides a number of template queries for common actions. Click on one of them to load it in the textbox, and replace the values that look `==LIKE THIS==` with valid names of collections, IDs, fields, file paths, etc.
 
 As there is no way of getting a list of available collection using the Firebase JavaScript SDK, you will need to guess these, or source their names from the target application's front-end JavaScript.
+
+Baserunner can also query Firebase Storage buckets. At present, the tool supports listing directories and downloading files.  To use this, ensure your Firebase configuration includes a `storageBucket` field. The storage operations will work with the same authentication as your database queries.
 
 ## FAQ
 
@@ -58,6 +60,10 @@ Should requests from localhost be disallowed by the application you're testing, 
 Cloud Firestore: For security reasons, Firebase's client-side JavaScript API does not provide a mechanism for listing collections. You will need to deduce these from looking at the target application's JavaScript code and making educated guesses.
 
 Realtime Database: As this datastore is represented as a JSON object, you can use the provided "[Realtime Database] Read datastore" query to attempt to view the entire thing. Note that this may fail depending on the rules configured.
+
+**How do I know what files are in Firebase Storage?**
+
+Try listing the root (`/`) first. If that's protected, see what files your the app you're testing is accessing. You might want to try folders like `/uploads` or `/images`.
 
 **Can I see the results of previous queries?**
 

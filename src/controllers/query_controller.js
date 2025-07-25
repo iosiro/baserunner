@@ -139,4 +139,39 @@ export default class extends Controller {
 });
 `
     }
+
+    download_file() {
+      if (!window.storage) {
+          alert("Storage not initialized! Please set Firebase config first.");
+          return;
+      }
+      this.queryTarget.value = `window.storage.ref("==FILE_PATH==").getDownloadURL()
+.then((url) => {
+    window.displayStorageDownload(url);
+})
+.catch((error) => {
+    window.displayError(\`Error downloading file: \${error}\`);
+});
+`
+    }
+
+    list_files() {
+      if (!window.storage) {
+          alert("Storage not initialized! Please set Firebase config first.");
+          return;
+      }
+      this.queryTarget.value = `window.storage.ref("/").listAll()
+.then((result) => {
+    var files = [];
+    result.items.forEach((itemRef) => {
+        files.push(itemRef.fullPath);
+    });
+    window.displayMessage(\`Files: \${JSON.stringify(files, null, 2)}\`);
+})
+.catch((error) => {
+    window.displayError(\`Error listing files: \${error}\`);
+});
+`
+    }
+
 }
